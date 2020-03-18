@@ -1,6 +1,6 @@
 {
-  "name": "echarts",
-  "version": "4.6.0",
+  "name": "pj-echarts",
+  "version": "4.6.1",
   "description": "A powerful charting and visualization library for browser",
   "license": "Apache-2.0",
   "keywords": [
@@ -10,7 +10,7 @@
   "homepage": "http://echarts.apache.org",
   "repository": {
     "type": "git",
-    "url": "https://github.com/apache/incubator-echarts.git"
+    "url": "https://github.com/panjiang/incubator-echarts.git"
   },
   "scripts": {
     "release": "node build/build.js --release",
@@ -27,7 +27,7 @@
     "lint:dist": "echo 'It might take a while. Please wait ...' && ./node_modules/.bin/jshint --config .jshintrc-dist dist/echarts.js"
   },
   "dependencies": {
-    "zrender": "4.2.0"
+    "zrender": "npm:pj-zrender@^4.3.1"
   },
   "devDependencies": {
     "@babel/core": "7.3.4",

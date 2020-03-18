@@ -298,7 +298,14 @@ function updateEl(el, dataIndex, elOption, animatableModel, data, isInit, isRoot
 
     if (el.type === 'text' && elOption.style) {
         var targetStyle = transitionProps.style = {};
-        zrUtil.each(['x', 'y'], function (prop) {
+
+        // textIsNumber make number text animatable
+        var transitionStyles = ['x', 'y'];
+        elOptionStyle.hasOwnProperty('textIsNumber') && elOptionStyle.textIsNumber && (
+            transitionStyles.push('text')
+        );
+
+        zrUtil.each(transitionStyles, function (prop) {
             prepareStyleTransition(prop, targetStyle, elOptionStyle, el.style, isInit);
         });
         // Compatible with previous: both support

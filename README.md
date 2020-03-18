@@ -13,6 +13,43 @@ Please check its incubator status [here](http://incubator.apache.org/projects/ec
 
 [![Build Status](https://travis-ci.org/apache/incubator-echarts.svg?branch=master)](https://travis-ci.org/apache/incubator-echarts) [![](https://img.shields.io/npm/dw/echarts.svg?label=npm%20downloads&style=flat)](https://www.npmjs.com/package/echarts) [![Last npm release](https://img.shields.io/npm/v/echarts)](https://www.npmjs.com/package/echarts)
 
+
+## Fork
+
+- text style中添加 textIsNumber，实现数字文本的补间动画
+- 需要 zrender 配合实现 textFormatter 格式化补间过程中的数字: [pj-zrender](https://github.com/panjiang/zrender)
+
+```
+npm install echarts@npm:pj-echarts
+```
+
+```js
+{
+  series: {
+    type: 'custom',
+    renderItem: (params, api) => {
+      const value = api.value(0)
+
+      return {
+        type: 'group',
+        children: [
+          {
+            type: 'text',
+            style: {
+              text: value,
+              textIsNumber: true, // hack: 让数字文本支持补间动画
+              textFormatter: v => { // hack: 补间过程中格式化数字（默认是特别长的小数）
+                return `${Number(v).toFixed(2)}`
+              },
+            },
+            z2: zIndex + 1,
+          },
+        ],
+    }
+  }
+}
+```
+
 ## Get ECharts
 
 You may choose one of the following methods:
