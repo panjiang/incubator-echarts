@@ -318,6 +318,16 @@ function updateEl(el, dataIndex, elOption, animatableModel, data, isInit, isRoot
         );
     }
 
+    if (elOption.style) {
+        if (!transitionProps.style) {
+            transitionProps.style = {};
+        }
+        var targetStyle = transitionProps.style;
+        zrUtil.each(['opacity'], function (prop) {
+            prepareStyleTransition(prop, targetStyle, elOptionStyle, el.style, isInit);
+        });
+    }
+
     if (el.type !== 'group') {
         el.useStyle(elOptionStyle);
 
